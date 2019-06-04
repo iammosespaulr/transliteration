@@ -1,7 +1,7 @@
 import requests
 from googletrans import Translator
 from unidecode import unidecode
-
+import string
 translator = Translator()
 
 
@@ -26,7 +26,7 @@ def CleanText(text):
     :param text: text as str
     :return: manipulated text as str
     """
-    res = text
+    res = text# .translate(str.maketrans('', '', string.punctuation))
     res = res.replace('ä', 'ae')
     res = res.replace('ö', 'oe')
     res = res.replace('ü', 'ue')
@@ -37,6 +37,7 @@ def CleanText(text):
     return unidecode(res)
 
 def Transliterate( text , LanguageCodedest = "Tamil" , source = "English" ):
+    text = CleanText(text)
     if LanguageCodeDict[LanguageCodedest.upper()] == LanguageCodeDict[source.upper()]:
         return text
     elif LanguageCodeDict[LanguageCodedest.upper()] == 'en':
