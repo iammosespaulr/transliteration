@@ -37,7 +37,9 @@ def CleanText(text):
     return unidecode(res)
 
 def Transliterate( text , LanguageCodedest = "Tamil" , source = "English" ):
-    if LanguageCodeDict[LanguageCodedest.upper()] == 'en':
+    if LanguageCodeDict[LanguageCodedest.upper()] == LanguageCodeDict[source.upper()]:
+        return text
+    elif LanguageCodeDict[LanguageCodedest.upper()] == 'en':
         #print(CleanText(Translite(text, LanguageCodedest)))
         return CleanText(Translite(text, LanguageCodedest))
     elif LanguageCodeDict[source.upper()] == 'en':
